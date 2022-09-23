@@ -1,14 +1,11 @@
 package com.example.savelistenyoutube
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
-import android.widget.BaseAdapter
-import java.security.AccessControlContext
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         ButtonEvent.setOnClickListener {
             Log.v("0", YoutubeLinkText.text.toString())
+            RequestObject.send(this) { testSuccess ->
+                if(testSuccess)
+                {
+                    Log.v("Success", "통신 성공")
+                } else {
+                    Log.v("Success", "통신 실패")
+                }
+            }
         }
     }
 }
